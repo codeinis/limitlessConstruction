@@ -1,0 +1,3221 @@
+/* -------------------------------- 
+ 01.Custom Icons
+ 02.Primary Styles
+ 03.Header Section
+ 04.Slider Section
+ 05.One Page Sections
+ 	a.Corporate Section
+	b.Team Section
+	c.Vehicles Section
+	d.Services Section
+	e.Projects Section
+	f.Quote Section (CTA)
+	g.Refecences Section
+	h.Blog Section
+	i.Contact Section
+ 06.Footer Section
+ 07.Blog Styles
+-------------------------------- */
+
+@import 'partials/bourbon'; // bourbon.io lightweight mixin library
+@import 'partials/variables'; // variables inside partials > _variables.scss ( colors, fonts etc... )
+@import 'partials/mixins'; // custom mixins
+@import 'partials/layout'; // responsive grid and media queries
+@import 'partials/icons'; // construction icons
+
+
+
+/* -------------------------------- 
+ 02.Primary Styles
+-------------------------------- */
+
+*, *::after, *::before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	height: 100%;
+}
+
+.wrapper-content {
+	overflow: hidden;
+}
+
+body {
+	position: relative;
+	font: {
+		size: 1.6rem;
+		family: $primary-font; 
+	}
+	background-color: $bgcolor;
+	color: $light-black;
+	line-height: 24px;
+	height: 100%;
+	padding: 0px !important;
+}
+
+a {
+	font: {
+		family: $primary-font; 
+		weight: 400;
+	}
+	color: $linkcolor;
+	text-decoration: none !important;
+	margin: 0px;
+	padding: 0px;
+	outline: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font: {
+		family: $primary-font; 
+		weight: 400;
+	}
+	margin: 0px;
+	padding: 0px;
+}
+
+h1 {
+	font: {
+		size: 3.6rem;
+	}
+}
+
+h2 {
+	font: {
+		size: 3.2rem;
+	}
+}
+
+h3 {
+	font: {
+		size: 2.8rem;
+	}
+}
+
+h4 {
+	font: {
+		size: 2.4rem;
+	}
+}
+
+h5 {
+	font: {
+		size: 2rem;
+	}
+}
+
+h6 {
+	font: {
+		size: 1.6rem;
+	}
+}
+
+p {
+	font: {
+		family: $primary-font;
+		size: 1.4rem;
+	}
+	line-height: 24px;
+	color: $light-black;
+	margin: 0px;
+	padding: 0px;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+input,
+textarea {
+	&:focus {
+		outline: none !important;
+	}
+}
+
+form {
+	.form-group {
+		.form-control {
+			border-color: black;
+			box-shadow: none;
+			@include border-radius (0px);
+			font-size: 1.2rem;
+
+			@include placeholder {
+				font-size: 1.2rem;
+				color: tint(gray, 50%);
+				line-height: 21px;
+				letter-spacing: 0.5px;
+				@include transition(all .4s);
+			}
+
+			&:focus {
+				@include placeholder {
+					color: transparent;
+				}
+			}
+		}
+
+		textarea {
+			height: 100px;
+		}
+	}
+}
+
+
+blockquote {
+	border-left-color: $primary-color;
+	margin: 15px 0 15px 25px;
+	p {
+		color: $secondary-color;
+		font-style: italic;
+		margin-bottom: 5px !important;
+	}
+
+	em {
+		font-size: 1.4rem;
+		line-height: 24px;
+		font-weight: 700;
+	}
+}
+
+@import 'partials/helpers';
+
+
+/* -------------------------------- 
+ 03.Header Section
+-------------------------------- */
+header {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	min-height: 120px;
+	z-index: 100;
+	@include transition(all .4s);
+	background: rgba(255,255,255,.1);
+	border-bottom: 1px solid rgba(255,255,255,.4);
+
+	@include MaxQ(XS) {
+		background: transparent;
+		border: 0px;
+	}
+
+	.logo {
+
+		position: absolute;
+		@include center;
+		opacity: 1;
+		visibility: visible;
+		@include transition(all .4s);
+		@include MaxQ(XS) {
+			margin-top: 40px;
+		}
+
+		img {
+			@media (min-height: 400px) and (max-height: 500px) {
+				width: 60px;
+				margin-top: -40px;
+			}
+		}
+	}
+
+	.logo-white {
+		width: 92px;
+		position: absolute;
+		@include center;
+		opacity: 0;
+		visibility: hidden;
+		@include transition(all .4s);
+		img {
+			max-width: 100%;
+		}
+	}
+
+	&.scrolling {
+		background: $secondary-color;
+		border-bottom: 1px solid $secondary-color;
+		min-height: 100px;
+
+		@include MaxQ(XS) {
+			min-height: 80px;
+		}
+
+		.logo {
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		.logo-white {
+			opacity: 1;
+			visibility: visible;
+			@include MaxQ(XS) {
+				display: none;
+			}
+		}
+
+		.lang-trigger {
+			top: 35px;
+			color: white;
+			@include MaxQ(XS) {
+				top: 25px;
+			}
+		}
+
+		.nav-trigger {
+			top: 25px;
+			@include MaxQ(XS) {
+				top: 15px;
+			}
+			span {
+				background: white;
+				&::before,
+				&::after {
+				  background: white;
+				}
+			}
+		}
+	}
+
+	&.is-hidden {
+		@include transform(translateY(-150%));
+	}
+}
+
+.nav-open {
+	header {
+		&.scrolling {
+			.nav-trigger {
+				top: 40px;
+				span {
+					background: transparent;
+				}
+			}
+		}
+	}
+}
+
+.lang-trigger {
+	position: absolute;
+	display: block;
+	top: 50px;
+	left: 30px;
+	font-family: $secondary-font;
+	text-transform: uppercase;
+	font-size: 1.4rem;
+	font-weight: 700;
+	border: 0px;
+	background: transparent;
+	color: white;
+	outline: none;
+	@include transition(all .4s);
+
+	@include MaxQ(XS) {
+		top: 25px;
+	}
+
+	/* this is the right arrow */
+	&:after {
+		font-family: 'FontAwesome';
+		content: '\f107';
+		position: absolute;
+		top: 0px;
+		right: -10px;
+		font-size: 1.6rem;
+		margin-left: 5px;
+
+		@include MaxQ(S) {
+			right: auto;
+			left: 140px;
+		}
+	}
+}
+
+.langs {
+	position: absolute;
+	width: 232px;
+	padding: 30px 0;
+	top: 100px;
+	left: 30px;
+	background: $secondary-color url(../images/other/lang-world.png) top left no-repeat;
+	@include backgroundcover(cover);
+	opacity: 0;
+	visibility: hidden;
+	@include transition(all .35s);
+	@include transform(translateY(-10%));
+	@include MaxQ(XS) {
+		top: 75px;
+	}
+
+	z-index: 120;
+
+	&:before {
+		position: absolute;
+		content: '';
+		top: -10px;
+		left: 50%;
+		margin-left: -10px;
+		width: 20px;
+		height: 20px;
+		background: $secondary-color;
+		@include transform(rotate(45deg));
+	}
+
+	li {
+		line-height: 28px;
+		text-align: center;
+		a {
+			font-family: $secondary-font;
+			font-size: 1.6rem;
+			font-weight: 700;
+			color: white;
+			@include transition(color .4s);
+			&:hover {
+				color: $primary-color;
+			}
+		}
+	}
+}
+
+.lang-open {
+	.langs {
+		opacity: 1;
+		visibility: visible;
+		@include transform(translateY(0px));
+	}
+
+	.overlay-lang {
+		opacity: .6;
+		visibility: visible;
+	}
+}
+
+
+//Menu 
+.overlay,
+.overlay-lang {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 105;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.7);
+	opacity: 0;
+	visibility: hidden;
+	cursor: pointer;
+	@include transition(opacity .5s, visibility .5s);
+}
+
+.nav-container {
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 90%;
+	max-width: 400px;
+	background: $secondary-color;
+	overflow: auto;
+	z-index: 110;
+	@include transform(translateZ(0));
+  	@include transform(translateX(100%));
+  	@include transition(transform .5s cubic-bezier(.07,.23,.34,1));
+
+  	@media (max-width: 600px) {
+  		max-width: 320px;
+  	}
+
+  	.nav-container-top {
+  		padding: 130px 0 80px 0;
+		
+		@include MaxQ(XS) {
+			padding-top: 90px;
+		}
+
+  		.menu {
+
+			li {
+				margin-bottom: 20px;
+				&:last-child {
+					margin-bottom: 0px;
+				}
+				
+				a {
+					display: block;
+					color: white;
+					padding-left: 30px;
+					font-size: 1.6rem;
+					font-weight: 300;
+					opacity: .5;
+					@include transition(all .35s);
+				}
+				
+				&:hover {
+					a {
+						padding-left: 40px;
+					}
+				}
+
+				&:hover,
+				&.active {
+					a {
+						opacity: 1;
+					}
+				}
+
+				&.menu-item-has-children {
+
+					> a {
+						/* this is the right arrow */
+						&::after {
+							font-family: 'FontAwesome';
+							content: '\f105';
+							display: inline-block;
+							font-size: 1.6rem;
+							margin-left: 10px;
+							@include transition-property(transform);
+							@include transition-duration(.2s);
+						}
+
+						&.submenu-open::after {
+							@include transform(rotate(90deg));
+
+						}
+					}
+
+					ul {
+						&.sub-menu {
+							padding-left: 15px;
+							display: none;
+							margin-top: 10px;
+						}
+
+						li {
+							margin-bottom: 10px;
+
+							a {
+								color: $primary-color;
+							}
+						}
+					}
+				}
+			}
+		}
+  	}
+
+  	.nav-container-bottom {
+  		position: absolute;
+		right: 0px;
+		bottom: 0px;
+		width: 100%;
+  		background: rgba(255,255,255,.03);
+		padding: 30px 0;
+
+		@include MaxQ(XS) {
+			padding: 20px 0;
+		}
+
+		@media (min-height: 400px) and (max-height: 500px) {
+			display: none;
+		}
+
+  		.company-profile {
+
+  			li {
+  				margin-bottom: 20px;
+  				@include MaxQ(XS) {
+					margin-bottom: 10px;
+				}
+  				&:last-child {
+					margin-bottom: 0px;
+				}
+
+				a {
+					display: block;
+					color: $primary-color;
+					padding-left: 30px;
+					font-size: 1.4rem;
+					font-weight: 300;
+					@include transition(all .35s);
+
+					@include MaxQ(XS) {
+						font-size: 1.2rem;
+					}
+
+					i {
+						margin-right: 5px;
+					}
+				}
+
+  			}
+  		}
+  	}
+}
+
+.nav-trigger {
+	position: absolute;
+	width: 44px;
+	height: 44px;
+	top: 40px;
+	right: 30px;
+	overflow: hidden;
+	color: transparent;
+	white-space: nowrap;
+	text-indent: 100%;
+	z-index: 115;
+	outline: none !important;
+	@include transition(background, .5s);
+
+	@include MaxQ(XS) {
+		top: 15px;
+	}
+
+	&:hover {
+		span {
+			width: 32px;
+			&::before,
+			&::after {
+			  width: 32px;
+			}
+		}
+	}
+  
+	// for hamburger menu icon
+	span { 
+		position: absolute;
+		height: 4px;
+		width: 18px;
+		top: 0px;
+		right: 0px;
+		background: white;
+		@include border-radius(7px);
+		@include center(y);
+		@include transition(all .35s);
+
+		&:before,
+		&:after {
+			 @include border-radius(7px);
+			 background: white;
+		}
+
+		&::before {
+		 	position: absolute;
+		 	height: 4px;
+		 	width: 32px;
+		 	content: " ";
+		 	top: 0px;
+		 	right: 0px;
+		 	@include transition(all .35s);
+		}
+
+		&::after {
+		 	position: absolute;
+		 	height: 4px;
+		 	width: 26px;
+		 	content: " ";
+		 	top: 0px;
+		 	right: 0px;
+		 	@include transition(all .35s);
+		}
+
+		&::before {
+		  @include transform(translateY(-8px));
+		}
+
+		&::after {
+		  @include transform(translateY(8px));
+		}
+	}
+}
+
+.nav-open {
+	.overlay {
+		opacity: .6;
+		visibility: visible;
+	}
+
+	.nav-container {
+		@include transform(translateX(0px));
+	}
+
+	.nav-trigger {
+		span {
+			width: 32px;
+			background: transparent;
+
+			&:before,
+			&:after {
+				width: 32px;
+				background: white;
+			}
+
+			&:before {
+				 @include transform(rotate(-45deg));
+			}
+
+			&:after {
+				 @include transform(rotate(45deg));
+			}
+		}
+	}
+}
+
+
+
+
+
+/* -------------------------------- 
+ 04.Slider Section
+-------------------------------- */
+
+.section-slider {
+	
+	height: 100vh;
+	overflow: hidden;
+
+	#owl-consta {
+		.item {
+			display: block;
+			width: 100%;
+			height: 100%;
+			@include backgroundcover(cover);
+			overflow: hidden;
+
+			&:before {
+				position: absolute;
+				content: '';
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				height: 100%;
+				background: rgba(33,41,44,.3);
+			}
+
+			&.style-two {
+				.container {
+					position: relative;
+					height: 100%;
+					.caption {
+						position: relative;
+						left: 35px;
+						@include transform(translateX(0px) translateY(-50%));
+						height: 409px;
+						padding-left: 40px;
+
+						@media (max-width: 767px) {
+							left: 0px;
+							padding-left: 0px;
+						}
+
+						@include MQ(S) {
+							background: url(../images/slider/half-frame.png) top left no-repeat;
+						} 
+
+
+						.frame {
+							border: 0px;
+							
+							.caption-text {
+								@include MQ(S) {
+									position: absolute;
+									@include center(y);
+								}
+								h1,h3,p {
+									text-align: left;
+									color: white;
+									@media (max-width: 767px) {
+										text-align: center;
+									}	
+								}
+
+								h1 {
+									font-size: 7rem;
+									@include MaxQ(XS) {
+										font-size: 4rem;
+									}
+								}
+							}
+
+							.buttons {
+								@include MQ(M) {
+									margin-left: -100px;
+								}
+							}
+						}
+					}
+				}
+			}
+
+
+			&.style-three {
+				.container {
+					position: relative;
+					height: 100%;
+
+					.caption {
+						position: relative;
+						left: 40px;
+						padding-left: 40px;
+						@include transform(translateX(0px) translateY(-50%));
+						height: 409px;
+						@media (max-width: 767px) {
+							padding-left: 0px;
+							left: 0px;
+						}
+						@include MQ(S) {
+							background: url(../images/slider/frame.png) top left no-repeat;
+						}
+						@include MQ(L) {
+							left: -40px;
+						}
+
+						.frame {
+							border: 0px;
+							
+							.caption-text {
+								@include MQ(S) {
+									position: absolute;
+									@include center(y);
+								}
+								h1,h3{
+									text-align: left;
+									@media (max-width: 767px) {
+										text-align: center;
+									}	
+								}
+
+								h1 {
+									font-size: 7rem;
+									@include MaxQ(XS) {
+										font-size: 4rem;
+									}
+								}
+
+								p {
+									text-align: right;
+									color: white;
+									@media (max-width: 767px) {
+										text-align: center;
+									}	
+								}
+							}
+
+							.buttons {
+								@include MQ(M) {
+									margin-left: -100px;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			.caption {
+				position: absolute;
+				@include center;
+				width: 90%;
+				@include MaxQ(XS) {
+					margin-top: 50px;
+				}
+
+				@media (max-width: 767px) {
+					width: 100%;
+				}
+				@include MQ(M) {
+					width: auto;
+				}
+
+				.frame {
+
+					@include MQ(M) {
+						width: 760px;
+					}
+					height: 285px;
+					color: white;
+					text-align: center;
+					padding-top: 20px;
+
+					@include MQ(S) {
+						border: 10px solid $primary-color;
+					}
+
+					.caption-text {
+						h1,
+						h3,
+						p {
+							letter-spacing: -0.5px;
+						}
+		
+						h3 {
+							font-size: 4.8rem;
+							font-weight: 300;
+							@include MaxQ(XS) {
+								font-size: 3.2rem;
+							}
+						}
+
+						h1 {
+							font-size: 7.2rem;
+							font-weight: 700;
+							@include animation-delay(.75s);
+							@include MaxQ(XS) {
+								font-size: 4rem;
+							}
+						}
+
+						p {
+							font-size: 3rem;
+							font-weight: 300;
+							color: white;
+							@include animation-delay(1.5s);
+							@include MaxQ(XS) {
+								font-size: 1.8rem;
+							}
+						}
+					}
+
+					.buttons {
+						@media (max-width: 767px) {
+							margin-top: 30px;
+						}
+
+						@include MQ(S) {
+							position: absolute;
+							width: 100%;
+							bottom: -25px;
+							@include center(x);
+						}
+
+						.caption-button {
+							position: relative;
+							display: inline-block;
+							width: 243px;
+							height: 55px;
+							cursor: pointer;
+							vertical-align: middle;
+							text-align: center;
+							font-size: 1.8rem;
+							font-weight: 700;
+							@include border-radius(27.5px);
+							line-height: 55px;
+							margin-right: 15px;
+							overflow: hidden;
+
+							@include MaxQ(XS) {
+								position: relative;
+								display: block;
+								width: 180px;
+								height: 40px;
+								line-height: 40px;
+								margin-bottom: 10px;
+								left: 50%;
+								margin-left: -90px;
+								font-size: 1.6rem;
+							}
+
+							span {
+								z-index: 20;
+							}
+
+							&:last-child {
+								margin-right: 0px;
+							}
+
+							&:after {
+								position: absolute;
+							    content: " ";
+							    width: 60px;
+							    height: 175px;
+							    left: -100px;
+							    opacity: .15;
+							    top: -60px;
+							    @include transform(rotate(35deg));
+							    @include transition(all 550ms cubic-bezier(0.19, 1, 0.22, 1));
+							    z-index: 1;
+							}
+
+							&:hover {
+								&:after {
+									left: 120%;
+									@include transition(all 550ms cubic-bezier(0.19, 1, 0.22, 1));
+								}
+							}
+
+							&.dark {
+								background: $secondary-color;
+								color: white;
+
+								&:after {
+									background: white;
+								}
+							}
+
+							&.white {
+								background: white;
+								color: $secondary-color;
+
+								&:after {
+									background: $secondary-color;
+									opacity: .05;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	#owl-consta,
+	.owl-stage-outer,
+	.owl-stage,
+	.owl-item {
+		 height: 100%;
+	}
+
+	.owl-dots {
+		position: absolute;
+		bottom: 30px;
+		@include center(x);
+
+		.owl-dot {
+			position: relative;
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			@include border-radius(50%);
+			border: 1px solid white;
+			margin-right: 5px;
+
+			span {
+				position: absolute;
+				display: block;
+				width: 5px;
+				height: 5px;
+				@include center;
+				@include border-radius(50%);
+			}
+
+			&:last-child {
+				margin-right: 0px;
+			}
+
+			&.active {
+				span {
+					background: white;
+				}
+			}
+		}
+	}
+}
+
+
+
+/* -------------------------------- 
+ 05.One Page Sections
+-------------------------------- */
+
+
+/* -------------------------------- 
+ 05-a.Corporate Secion
+-------------------------------- */
+
+.section-corporate {
+	position: relative;
+	padding: 80px 0 0 0;
+
+	.about-line {
+		position: absolute;
+		width: 1px;
+		height: 90px;
+		top: -15px;
+		background: $secondary-color;
+		opacity: .4;
+		@include center(x);
+		z-index: 99;
+	}
+	
+	.about-text {
+		h2 {
+			color: $secondary-color;
+			font-size: 3rem;
+			font-weight: 300;
+			
+			span {
+				color: $primary-color;
+			}
+		}
+
+		.line {
+			display: block;
+			width: 80px;
+			height: 5px;
+			background: $primary-color;
+			margin: 20px 0;
+
+			&.gray {
+				background: $secondary-color;
+				opacity: .1;
+			}
+		}
+
+		p {
+			color: $darkgraytext-color;
+			font-size: 1.8rem;
+			font-weight: 300;
+			line-height: 34px;
+			letter-spacing: -0.25px;
+
+			&.small-text {
+				font-size: 1.3rem;
+				line-height: 24px;
+				color: black;
+			}
+		}
+	}
+
+	.fact-circles {
+		padding: 40px 0;
+		position: relative;
+		&:before {
+			position: absolute;
+			content:'';
+			@include center;
+			width: 1px;
+			height: 548px;
+			background: rgba(0,0,0,0.2);
+			z-index: 5;
+		}
+
+		.circle {
+			position: relative;
+			display: block;
+			width: 126px;
+			height: 126px;
+			margin: 0px auto;
+			margin-bottom: 45px;
+			border: 1px solid rgba(0,0,0,0.2);
+			background: white;
+			@include border-radius(50%);
+			z-index: 10;
+
+			&:last-child {
+				margin-bottom: 0px;
+			}
+
+			.circle-content {
+				position: absolute;
+				@include center;
+
+				span {
+					display: block;
+					font-size: 1.4rem;
+					color: $secondary-color;
+					text-align: center;
+					font-weight: 300;
+					text-transform: uppercase;
+					line-height: 24px;
+					white-space: nowrap;
+					&.number {
+						font-size: 3.6rem;
+						font-weight: 700;
+						color: $primary-color;
+						letter-spacing: -1px;
+						line-height: 36px;
+					}
+				}
+			}
+		}
+	}
+
+	.photo-frames {
+		position: relative;
+		@media (min-width: 600px) {
+			height: 582px;
+		}
+		
+		.frame {
+			@media (min-width: 600px) {
+				position: absolute;
+				border: 10px solid $frame-border-color;
+			}
+
+			@include MaxQ(XS) {
+				margin-bottom: 30px;
+			}
+
+			img {
+				@include MaxQ(XS) {
+					display: block;
+					margin: 0px auto;
+					max-width: 100%;
+				}
+			}
+
+			&.top-left {
+				top: 0px;
+				left: 0px;
+				@include MaxQ(XS) {
+					margin-top: 30px;
+				}
+			}
+			
+			&.middle {
+				display: none;
+				@media (min-width: 600px) {
+					display: block;
+				}
+				width: 196px;
+				height: 320px;
+				@include center;
+				opacity: .5;
+				z-index: 10;
+				border: 5px solid $frame-border-color;
+			}
+
+			&.bottom-right {
+				bottom: 0px;
+				right: 0px;
+			}
+		}
+	}
+}
+
+
+/* -------------------------------- 
+ 05-b.Team Secion
+-------------------------------- */
+.section-team {
+	.container {
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	.vertical-line {
+		&.top {
+			display: block;
+			@include MQ(M) {
+				display: none;
+			}
+		}
+	}
+	
+	#owl-team {
+		.item {
+			position: relative;
+			padding-top: 20px;
+			img {
+				width: auto;
+			}
+		}
+		.owl-controls {
+			.owl-nav {
+				.owl-prev,
+				.owl-next {
+					position: absolute;
+					@include center(y);
+					top: 40%;
+					width: 50px;
+					min-height: 30px;
+
+					&:before {
+						position: absolute;
+						font-family: 'FontAwesome';
+						color: $secondary-color;
+						font-size: 3rem;
+						@include center;
+					}
+				}
+
+				.owl-prev {
+					left: -15px;
+					&:before {
+						content: '\f104';
+					}
+					@include MQ(L) {
+						left: 0px;
+					}
+				}	
+
+				.owl-next {
+					right: -15px;
+					@include MQ(L) {
+						right: 0px;
+					}
+					&:before {
+						content: '\f105';
+					}
+				}
+			}
+		}
+	}
+
+
+	.team-member {
+		position: relative;
+		display: block;
+		margin: 0px auto;
+		width: 162px;
+		min-height: 162px;
+
+		.arc {
+		    position: absolute;
+		    top: -15px;
+		    left: -15px;
+		    width: 192px; 
+		    height: 192px;
+		    border-radius: 50%;
+		    border: 15px solid;
+
+		    &.arc_start {
+			    border-color:transparent $member-circle-inner $member-circle-inner $member-circle-inner;
+			    @include transform(rotate(180deg));
+			    @include transition(transform .9s);
+			}
+
+			&.arc_end {
+			    border-color:$member-circle-inner $member-circle-inner $member-circle-inner transparent;
+			    @include transform(rotate(270deg));
+			    @include transition(transform .9s);
+			}
+		}
+
+		&:hover {
+			cursor: pointer;
+			.arc {
+				&.arc_start {
+					@include transform(rotate(270deg));
+				}
+
+				&.arc_end {
+					@include transform(rotate(180deg));
+				}
+			}
+		}
+		
+		figure {
+			position: relative;
+			display: block;
+			margin: 0px auto;
+			width: 162px;
+			height: 162px;
+			@include border-radius(50%);
+		    overflow: hidden;
+			border: 1px solid $member-stroke;
+			z-index: 2	;
+			background: transparent;
+			margin-bottom: 15px;
+
+			img {
+				position: absolute;
+				@include center;
+				z-index: 1;
+			}
+		}
+
+		.member-name,
+		.member-title,
+		.social-accounts {
+			display: block;
+			text-align: center;
+		}
+
+		.member-name {
+			font-size: 1.8rem;
+			color: $secondary-color;
+			text-transform: uppercase;
+			span {
+				font-weight: 700;
+			}
+		}
+
+		.member-title {
+			font-size: 1.4rem;
+		}
+
+		.social-accounts {
+			margin-top: 15px;
+			ul {
+				li {
+					position: relative;
+					display: inline-block;
+					margin-right: 5px;
+					width: 24px;
+					height: 24px;
+					@include border-radius(50%);
+					background: $primary-color;
+					&:last-child {
+						margin-right: 0px;
+					}
+
+					a {
+						position: absolute;
+						font-size: 1.3rem;
+						color: white;
+						@include center;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+/* -------------------------------- 
+ 05-c.Vehicles Secion
+-------------------------------- */
+.section-vehicles {
+	margin-bottom: 100px;
+	@media (min-width: 992px) and (max-width: 1200px ) {
+		margin-bottom: 30px;
+	}
+	.section-title {
+		position: relative;
+		z-index: 2;
+	}
+	.vehicle-wrapper {
+		position: relative;
+		min-height: 393px;
+		margin-top: -30px;
+		padding: 70px 0;
+		@include MQ(M) {
+			padding: 70px;
+		}
+	
+		&:before {
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 100%;
+			background: $primary-color;
+			top: 0px;
+			left: 0px;
+			@include MQ(M) {
+				width: 60%;
+			}
+		}
+		
+		.icon {
+			position: relative;
+			height: 130px;
+
+			@include MaxQ(S) {
+				background: rgba(255,255,255,.1);
+			}	
+
+			[class^="ico-"] { 
+				position: absolute;
+				@include center;
+			}
+
+			i {
+				position: relative;
+				.numberofvehicles {
+					position: absolute;
+					width: 25px;
+					height: 25px;
+					background: $secondary-color;
+					margin-top: -12.5px;
+					right: -10px;
+					@include border-radius(50%);
+					@include transition(transform .4s);
+					@include transform(translateY(50%));
+
+					em {
+						position: absolute;
+						font-size: 1.4rem;
+						font-weight: 700;
+						font-style: normal;
+						color: $primary-color;
+						@include center;
+					}
+				}
+			}
+
+			&:hover {
+				i {
+					.numberofvehicles {
+						
+						@include transform(translateY(10%));
+					}
+				}
+			}
+		}
+
+		.col-md-4 {
+			&:nth-child(1),
+			&:nth-child(2) {
+				.icon {
+
+					&:before,
+					&:after {
+						position: absolute;
+						content: '';
+						width: 84px;
+						height: 1px;
+						background: shade($primary-color,15%);
+						display: none;
+						@include MQ(M) {
+							display: block;
+						}
+					}
+
+					&:before {
+						bottom: 0px;
+						right: -42px;
+					}
+
+					&:after {
+						@include transform(rotate(90deg));
+						bottom: 0px;
+						right: -42px;
+					}
+				}
+			}
+
+			&:last-child {
+				@include MaxQ(S) {
+					margin-bottom: 30px;
+				}		
+			}
+		}
+	}
+
+	.backgroundclip {
+		position: relative;
+		float: right;
+		width: 320px;
+		height: 180px;
+		background: white url(../images/vehicles/image-mask.jpg) no-repeat;
+
+		@include MaxQ(XS) {
+			width: 100%;
+		}
+
+		@include MaxQ(S) {
+			float: none;
+			display: block;
+			margin: 0px auto;
+		}
+		
+		@media (min-width: 992px) and (max-width: 1200px) {
+			margin-right: 30px;	
+		}
+
+		.white-frame {
+			position: absolute;
+			width: 300px;
+			height: 160px;
+			@include center;
+			background: white;
+
+			@include MaxQ(XS) {
+				width: 94%;
+			}
+		}
+		
+		h1 {
+			position: absolute;
+			width: 100%;
+			@include center;
+			font-family: $oswald;
+			font-size: 4.2rem;
+			font-weight: 700;
+			letter-spacing: -2px;
+			text-align: right;
+			padding: 0 15px;
+			background: url(../images/vehicles/image-mask.jpg) no-repeat;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			z-index: 5;
+		}
+	}
+
+	.white-frame {
+		h1 {
+		  color: $secondary-color;
+		}
+	}
+
+	.buldozer {
+		position: absolute;
+		right: 0px;
+		top: 150px;
+		z-index: 10;
+
+		@include MaxQ(XS) {
+			width: 350px;
+			left: -30px;
+			right: auto;
+		}
+
+		img {
+			max-width: 100%;
+		}
+
+		@media (min-width: 992px) and (max-width: 1200px) {
+			right: 30px;
+			top: 130px;
+		}	
+	}
+}
+
+/* -------------------------------- 
+ 05-d.Services Secion
+-------------------------------- */
+.section-services {
+	@include MaxQ(S) {
+		margin-top: 80px;
+	}
+
+	@media (min-width: 600px) and (max-width: 991px ) {
+		margin-top: 200px;
+	}
+
+	.services-wrapper {
+		position: relative;
+		margin: 60px 0;	
+		@include MQ(M) {
+			margin: 60px 0 120px 0;
+		}
+
+		background: rgba(0,0,0,0.05);
+
+		.service {
+			position: relative;
+			text-align: center;
+			min-height: 510px;
+			padding: 40px 0;
+
+			h1 {
+				font-size: 2.4rem;
+				font-weight: 300;
+				margin-bottom: 40px;
+				@include transition(color .4s);
+			}
+
+			figure {
+				position: relative;
+				height: 230px;
+				overflow: hidden;
+				margin-bottom: 40px;
+
+				img {
+					position: absolute;
+					@include center;
+				}
+			}
+
+			p {
+				font-size: 1.4rem;
+				color: $secondary-color;
+				font-weight: 300;
+				padding: 0 30px;
+				margin-bottom: 30px;
+			}
+
+			.more {
+				
+				display: block;
+				margin: 0px auto;
+				width: 100px;
+				height: 100px;
+				line-height: 95px;
+				@include border-radius(50%);
+				background: $primary-color;
+				color: white;
+				text-align: center;
+				overflow: hidden;
+				@include transition(all .4s);
+				border: 0px;
+				outline: none;
+
+				@include MQ(M) {
+					position: absolute;
+					bottom: -50px;
+					left: 50%;
+					margin-left: -50px;
+				}
+
+				&:after {
+					position: relative;
+					font-family: "Ionicons";
+					content: '\f30f';
+					color: white;
+					left: 3px;
+					@include transition(all .4s);
+				}
+
+				&:before {
+					content: '';
+					position: absolute;
+					top: 1px;
+					left: 0px;
+					width: 100%;
+					height: 100%;
+					background: transparent;
+					border: 2px solid rgba(255,255,255,.3);
+					@include border-radius(50%);
+					@include transition(all .4s);
+				}
+
+				&:hover {
+					&:before {
+						top: auto;
+						bottom: 1px;
+					}
+
+					&:after {
+						left: 7px;
+					}
+				}
+			}
+
+			&.center {
+				&:before {
+					position: absolute;
+					content: '';
+					background: $primary-color;
+					@include center;
+					width: 100%;
+					height: 110%;
+					@include transition(all .4s);
+					@include MaxQ(S) {
+						height: 100%;
+					}
+				}
+				
+				h1,p {
+					position: relative;
+					color: white !important;
+					z-index: 5;
+				}
+
+				.more {
+					background: $secondary-color;
+					bottom: -80px;
+
+					&:before {
+						border: 2px solid rgba(255,255,255,.16);
+					}
+				}
+
+				&:hover {
+					&:before {
+						
+					}
+				}
+			}
+		}
+
+		[class^="col-"] { 
+			padding: 0px;
+		}
+	}
+}
+
+
+/* -------------------------------- 
+ 05-e.Projects Secion
+-------------------------------- */
+.section-projects {
+	margin-bottom: 160px;
+
+	.project-filter {
+		width: 100%;
+		display: inline-block;
+		text-align: center;
+		margin: 20px 0 40px 0;
+
+		ul {
+			li {
+				display: inline-block;
+				&:after {
+					content: '/';
+					margin-left: 5px;
+					font-weight: 700;
+				}
+
+				&:last-child {
+					&:after {
+						content: '';
+					}
+				}
+
+				&:first-child {
+					button {
+						color: $secondary-color;
+					}
+				}
+
+				button {
+					font-size: 1.8rem;
+					font-weight: 700;
+					color: $primary-color;
+					border: 0px;
+					background: transparent;
+					outline: none;
+				}
+			}
+		}
+	}
+
+	.projects {
+		position: relative;
+
+		#isotope {
+			opacity: 0; 
+			@include transition(opacity .33s); 
+			&.projects-loaded {
+				opacity: 1;
+			}
+		}
+
+		.col-md-3 {
+			@include MaxQ(S) {
+				width: 100%;
+			}
+		}
+
+		.project-box {
+			background: rgba(0,0,0,0.02);
+			padding: 13px 13px 20px 13px;
+			text-align: center;
+			border: 1px solid rgba(0,0,0,0.07);
+			margin-bottom: 15px;
+
+			figure {
+				overflow: hidden;
+				
+				a {
+					display: block;
+					outline: none;
+					&:hover {
+						img {
+							@include MQ(M) {
+								@include transform(scale(1.1));
+							}
+						}
+					}
+				}
+				img {
+					max-width: 100%;
+					@include transition(transform .4s);
+				}
+				margin-bottom: 20px;
+			}
+
+			h3 {
+				color: $secondary-color;
+				font-size: 1.8rem;
+				letter-spacing: -1px;
+				margin-bottom: 10px;
+			}
+
+			p {
+				font-size: 1.4rem;
+				color: $primary-color;
+				letter-spacing: -1px;
+			}
+		}
+
+		.load-more {
+				
+			display: block;
+			position: absolute;
+			bottom: -100px;
+			@include center(x);
+			width: 100px;
+			height: 100px;
+			line-height: 95px;
+			@include border-radius(50%);
+			background: $primary-color;
+			color: white;
+			text-align: center;
+			overflow: hidden;
+			@include transition(all .4s);
+			border: 0px;
+			outline: none;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 1px;
+				left: 0px;
+				width: 100%;
+				height: 100%;
+				background: transparent;
+				border: 2px solid rgba(255,255,255,.3);
+				@include border-radius(50%);
+				@include transition(all .4s);
+			}
+
+			&:hover {
+				&:before {
+					top: auto;
+					bottom: 1px;
+				}
+			}
+		}
+	}
+}
+
+/* -------------------------------- 
+ 05-f.Quote Secion
+-------------------------------- */
+.section-getaquote {
+	position: relative;
+	height: auto;
+	margin: 60px 0;
+	
+	@include MQ(M) {
+		height: 182px;
+	}
+
+	.wrapper,
+	.container,
+	[class^="col-"] { 
+		@include MQ(M) {
+			height: 100%;
+		}
+	}
+
+	.col-md-10 {
+		@include MaxQ(S) {
+			min-height: 150px;
+			padding-top: 40px;
+			padding-bottom: 40px;
+		}
+	}
+	.wrapper {
+
+		@include MaxQ(S) {
+			background: $primary-color;
+		}
+		.worker {
+			position: relative;
+			height: 100%;
+			display: none;
+			img {
+				position: absolute;
+				@include center(x);
+				bottom: 0px;
+			}
+			@include MQ(M) {
+				display: block;
+			}
+		}
+
+		.col-md-10 {
+			position: relative;
+			background: $primary-color;
+			&:before {
+				position: absolute;
+				content: '';
+				background: $primary-color;
+				top: 0px;
+				left: -90px;
+				width: 180px;
+				height: 182px;
+				@include transform(skewX(-44deg));
+				display: none;
+				@include MQ(M) {
+					display: block;
+				}
+			}
+		}
+
+		.quote-text {
+			h1 {
+				font-size: 3.6rem;
+				font-weight: 300;
+				color: white;
+				letter-spacing: -0.5px;
+				@include MQ(M) {
+					margin-top: 55px;
+				}
+			}
+
+			p {
+				font-size: 1.8rem;
+				font-weight: 700;
+				letter-spacing: -0.5px;
+				color: white;
+			}
+
+			@include MaxQ(S) {
+				text-align: center;
+			}
+		}
+
+		.quote-btn {
+			position: relative;
+			height: 100%;
+			a {
+				display: block;
+				margin: 0px auto; 
+				width: 200px;
+				height: 50px;
+				line-height: 40px;
+				text-align: center;
+				font-weight: 700;
+				color: white;
+				border: 3px solid white;
+				margin-top: 20px;
+				@include border-radius(25px);
+				@include transition(background .4s);
+				@include MQ(M) {
+					position: absolute;
+					@include center(y);
+					right: -30px;
+				}
+				&:hover {
+					background: rgba(255,255,255,.2);
+				}
+			}
+		}
+	}
+	.dark-bg {
+		position: absolute;
+		width: 100%;
+		height: 123px;
+		@include center;
+		background: $secondary-color;
+		display: none;
+		@include MQ(M) {
+			display: block;
+		}
+
+		&:after {
+			position: absolute;
+			content: '';
+			width: 50%;
+			height: 182px;
+			@include center(y);
+			right: 0px;
+			background: $primary-color;
+		}
+	}
+}
+
+/* -------------------------------- 
+ 05-g.References Secion
+-------------------------------- */
+.section-references {
+	margin: 30px 0;
+
+	.references {
+		.reference {
+			position: relative;
+			height: 180px;
+			img {
+				position: absolute;
+				@include center;
+			}
+		}
+		.col-md-3 {
+			&:nth-child(1),
+			&:nth-child(2),
+			&:nth-child(3) {
+				.reference {
+
+					&:before,
+					&:after {
+						position: absolute;
+						content: '';
+						width: 200px;
+						height: 1px;
+						background: $secondary-color;
+						opacity: .1;
+						display: none;
+						@include MQ(M) {
+							display: block;
+						}
+					}
+
+					&:before {
+						bottom: 0px;
+						right: -115px;
+					}
+
+					&:after {
+						width: 150px;
+						@include transform(rotate(90deg));
+						bottom: 0px;
+						right: -90px;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+/* -------------------------------- 
+ 05-h.Blog Secion
+-------------------------------- */
+.section-blog {
+
+	.home-blog-posts {
+		position: relative;
+		margin: 30px 0;
+		@include MaxQ(S) {
+			padding-top: 30px;
+		}
+
+		&:before {
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			right: 0px;
+			background: $home-blog-posts-bg;
+
+			@include MQ(M) {
+				width: 30%;
+			}
+		}
+		
+		.small-posts {
+			position: relative;
+			
+			&:before {
+				position: absolute;
+				content: '';
+				width: 100%;
+				height: 100%;
+				top: 0px;
+				left: 0px;
+				background: $home-blog-posts-bg;
+				
+			}
+
+			.normal-btn {
+				position: relative;
+				margin: 0px auto;
+				margin-bottom: 30px;
+				z-index: 5;
+			}
+		}
+		
+		.post {
+			position: relative;
+			z-index: 5;
+			.title {
+				h1 {
+					font-size: 2.4rem;
+					font-weight: 700;
+					color: $secondary-color;
+				}
+				margin-bottom: 30px;
+			}
+
+			figure {
+				height: 430px;
+				overflow: hidden;
+				img {
+					max-width: 100%;
+				}
+				@media (max-width: 767px) {
+					height: auto;
+				}
+			}
+
+			.row {
+				&.first {
+					margin-top: 30px;
+					margin-bottom: 30px;
+					font-size: 1.4rem;
+					font-weight: 400;
+					color: $secondary-color;
+
+					.author {
+						color: $primary-color;
+					}
+
+					.date {
+						text-align: right;
+					}
+				}
+
+				&.second {
+
+					.nof-comments {
+						display: block;
+						text-align: right;
+						font-size: 1.4rem;
+						font-weight: 700;
+						color: $secondary-color;
+						padding-top: 5px;
+					}
+				}
+			}
+
+			.excerpt {
+				margin-bottom: 30px;
+				p {
+					font-size: 1.4rem;
+					color: $secondary-color;
+					line-height: 24px;
+					margin: 15px 0;
+				}
+			}
+
+			&.small {
+				margin: 30px 0;
+				padding: 10px;
+				background: white;
+				figure {
+					position: relative;
+					height: 300px;
+					margin-bottom: 30px;
+					@include MaxQ(XS) {
+						height: auto;
+					}
+					@include MQ(M) {
+						height: 200px;
+					}
+
+					a {
+						display: block;
+						&:before {
+							position: absolute;
+							content: '';
+							top: 0px;
+							left: 0px;
+							width: 100%;
+							height: 100%;
+							background: rgba(0,0,0,0.6);
+							opacity: 0;
+							visibility: hidden;
+							@include transition(all .4s);
+						}
+
+						&:after {
+							position: absolute;
+							font-family: "Ionicons"; 
+							content: '\f21f';
+							color: white;
+							font-size: 2.4rem;
+							@include center;
+							opacity: 0;
+							visibility: hidden;
+
+						}
+
+						&:hover {
+							&:before,
+							&:after {
+								opacity: 1;
+								visibility: visible;
+							}
+						}
+					}
+				}
+
+				.wrapper {
+					padding: 0 15px;
+				}
+
+				.title {
+					h1 {
+						font-size: 1.6rem;
+						line-height: 20px;
+					}
+					margin-bottom: 15px;
+				}
+
+				.row {
+					&.first {
+						margin-top: 15px;
+						margin-bottom: 15px;
+						font-size: 1.2rem;
+					}
+				}
+
+				.excerpt {
+					p {
+						font-size: 1.2rem;
+						line-height: 18px;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* -------------------------------- 
+ 05-i.Contact Secion
+-------------------------------- */
+.section-contact {
+	.section-title {
+		margin-bottom: 30px;
+		@include MQ(M) {
+			margin: -100px 0 30px 0;
+		}
+	}
+
+	.google-map {
+		float: left;
+		width: 100%;
+		height: 482px;
+		@include MQ(M) {
+			width: 50%;
+		}
+		.map {
+			height: 100%;
+		}
+	}
+	
+	.contact-form {
+		float: left;
+		background: $secondary-color;
+		padding: 80px 40px 70px 40px;
+		width: 100%;
+		min-height: 482px;
+		@include MQ(M) {
+			width: 50%;
+		}
+		@include MQ(L) {
+			padding: 80px 80px 70px 0;
+		}
+
+		.success,
+		.error {
+			font-size: 1.2rem;
+			color: white;
+			display: none;
+		}
+
+		form {
+			width: 100%;
+			@include MQ(L) {
+				width: 500px;
+			}
+			float: right;
+		}
+		.form-group {
+			.form-control {
+				height: 45px;
+			}
+			.form-control,
+			textarea {
+				border: 0px;
+				background: transparent;
+				border-bottom: 1px solid rgba(255,255,255,0.2);
+				color: white;
+				padding: 10px 0px;
+
+				@include placeholder {
+					font-size: 1.4rem;
+					color: rgba(255,255,255,.5);
+					font-weight: 300;
+					@include transition(all .4s);
+				}
+
+				&:focus {
+					@include placeholder {
+						color: transparent;
+					}
+				}
+			}
+
+			textarea {
+				width: 100%;
+				height: 130px;
+				font-size: 1.4rem;
+			}
+
+			.submit-btn {
+				@include MQ(M) {
+					float: right;
+				}
+			}
+		}
+	}
+}
+
+
+/* -------------------------------- 
+ 06 Footer Secion
+-------------------------------- */
+
+footer {
+	position: relative;
+	float: left;
+	width: 100%;
+	min-height: 193px;
+	margin-top: 70px;
+	@include MQ(M) {
+		margin-top: 140px;
+	}
+	background: $secondary-color;
+
+	.top-section {
+		background: tint($primary-color,20%);
+		height: auto;
+		padding: 30px 0;
+		margin-top: -30px;
+		@include MQ(M) {
+			height: 134px;
+			padding: 0px;
+			margin-top: -80px;
+			@include dropshadow (1px,1px,5px,0,.3);
+		}
+
+		[class^="col-"] { 
+			position: relative;
+			@include MQ(M) {
+				height: 100%;
+			}
+		}
+
+		.social {
+			text-align: center;
+			@include MQ(M) {
+				position: absolute;
+				@include center(y);
+				left: 30px;
+			}
+			ul {
+			
+				li {
+					display: inline-block;
+					margin-left: 40px;
+					&:first-child {
+						margin-left: 0px;
+					}
+
+					a {
+						color: white;
+						font-size: 2.4rem;
+						@include transition(color .4s);
+						&:hover {
+							color: shade($primary-color,10%);
+						}
+					}
+				}
+			}
+		}
+
+		.footer-logo {
+
+			@include MQ(M) {
+				position: absolute;
+				@include center;
+			}
+
+			img {
+				display: block;
+				margin: 30px auto;
+			}
+		}
+
+		.mailchimp,
+		.subcription-form {
+			@include MQ(M) {
+				position: absolute;
+				@include center(y);
+				right: 30px;
+			}
+			display: block;
+			margin: 0px auto;
+			width: 300px;
+
+			@include MaxQ(XS) {
+				width: 100%;
+			}
+
+			.subscription-success,
+			.subscription-error {
+				display: none;
+				font-size: 1.2rem;
+				font-weight: 300;
+				color: $secondary-color;
+			}
+
+			.form-group {
+				position: relative;
+				margin: 0px;
+				input {
+					width: 100%;
+					border: 0px;
+					border-bottom: 1px solid rgba(255,255,255,.2);
+					background: transparent;
+					color: white;
+					font-size: 1.2rem;
+					padding: 0 35px 5px 0;
+					line-height: 20px;
+					@include placeholder {
+						font-size: 1.2rem;
+						color: rgba(255,255,255,.5);
+						font-weight: 300;
+						@include transition(all .4s);
+					}
+
+					&:focus {
+						@include placeholder {
+							color: transparent;
+						}
+					}
+				}
+
+				button {
+					position: absolute;
+					@include center(y);
+					right: 0px;
+					border: 0px;
+					background: transparent;
+					color: white;
+					outline: none;
+					i {
+						font-size: 2rem;
+					}
+				}
+			}
+		}
+	}
+
+
+	.bottom-section {
+		margin: 30px 0;
+		@include MQ(M) {
+			margin-top: 60px;
+		}
+		.copyright,
+		.address {
+			color: white;
+			font-size: 1.2rem;
+		}
+
+		.address {
+			text-align: right;
+			@media (max-width: 600px) {
+				text-align: center;
+			}
+		}
+
+		.copyright {
+			@media (max-width: 600px) {
+				text-align: center;
+				margin-bottom: 5px;
+			}
+		}
+	}
+}
+
+
+/* -------------------------------- 
+ 07.Blog Styles
+-------------------------------- */
+.blog {
+	header {
+		background: transparent;
+		border: 0px;
+
+		&.scrolling {
+			background: $secondary-color;
+			border-bottom: 1px solid $secondary-color;
+			min-height: 100px;
+
+			@include MaxQ(XS) {
+				min-height: 80px;
+			}
+
+			.logo {
+				opacity: 0;
+				visibility: hidden;
+			}
+
+			.logo-white {
+				opacity: 1;
+				visibility: visible;
+				@include MaxQ(XS) {
+					display: none;
+				}
+			}
+
+			.lang-trigger {
+				top: 35px;
+				color: white;
+				@include MaxQ(XS) {
+					top: 25px;
+				}
+			}
+
+			.nav-trigger {
+				top: 25px;
+				@include MaxQ(XS) {
+					top: 15px;
+				}
+				span {
+					background: white;
+					&::before,
+					&::after {
+					  background: white;
+					}
+				}
+			}
+		}
+
+		&.is-hidden {
+			@include transform(translateY(-150%));
+		}
+	}
+
+	.nav-container {
+		position: fixed;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 100%;
+		max-width: 100%;
+		max-height: 120px;
+		background: $secondary-color;
+		overflow: auto;
+		z-index: 110;
+		@include transform(translateZ(0));
+	  	@include transform(translateY(-	100%));
+	  	@include transition(transform .5s cubic-bezier(.07,.23,.34,1));
+		
+		.nav-container-top {
+			width: 100%;
+			padding: 0px;
+			.menu {
+				position: absolute;
+				@include center(y);
+				li {
+					float: left;
+					margin-bottom: 0px;
+					margin-left: 10px;
+					&:first-child {
+						margin-left: 30px;
+					}
+					a {
+						display: block;
+						color: white;
+						padding: 5px 10px;
+						font-size: 1.6rem;
+						font-weight: 300;
+						opacity: .5;
+						@include transition(all .35s);
+					}
+				
+					&:hover,
+					&.active {
+						a {
+							opacity: 1;
+							background: white;
+							color: $secondary-color;
+						}
+					}
+
+					&.menu-item-has-children {
+
+						> a {
+							/* this is the right arrow */
+							&::after {
+								font-family: 'FontAwesome';
+								content: '\f105';
+								display: inline-block;
+								font-size: 1.6rem;
+								margin-left: 10px;
+								@include transition-property(transform);
+								@include transition-duration(.2s);
+							}
+
+							&.submenu-open::after {
+								@include transform(rotate(90deg));
+
+							}
+						}
+
+						ul {
+							&.sub-menu {
+								padding-left: 15px;
+								display: none;
+								margin-top: 10px;
+							}
+
+							li {
+								margin-bottom: 10px;
+
+								a {
+									color: $primary-color;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+	  	.nav-container-bottom {
+	  		display: none;
+	  	}
+	}
+
+	&.nav-open {
+		.nav-container {
+			@include transform(translateY(0px));
+		}
+	}
+
+	&.nav-open {
+		header {
+			&.scrolling {
+				.nav-trigger {
+					top: 40px;
+					span {
+						background: transparent;
+					}
+				}
+			}
+		}
+	}
+
+	.single-post {
+		.content {
+			h1,h2,h3,h4,h5,h6,p {
+				margin-bottom: 10px;
+			}
+
+			h1,h2,h3 {
+				font-weight: 700;
+				margin-top: 30px;
+			}
+		}
+	}
+
+	aside {
+		margin-top: 60px;
+		@include MQ(M) {
+			margin-top: 0px;
+		}
+	}
+
+	footer {
+		margin-top: 70px;
+	}
+}
+
+
+.section-hero {
+	position: relative;
+	min-height: 400px;
+	background-attachment: fixed;
+	background-position: 0 -100px;
+
+	@include MaxQ(XS) {
+		min-height: 350px;
+	}
+
+
+	&:before {
+		position: absolute;
+		content: '';
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,.3);
+	}
+
+	.hero-text {
+		position: absolute;
+		@include center;
+		margin-top: 100px;
+		@include MaxQ(S) {
+			width: 100%;
+			margin-top: 70px;
+		}
+		
+		.hero-title {
+			font-size: 4.8rem;
+			text-transform: uppercase;
+			color: white;
+			font-weight: 700;
+			letter-spacing: -1px;
+			text-align: center;
+			@include MaxQ(XS) {
+
+				font-size: 3.6rem;
+			}
+		}
+		.breadcrumb {
+			background: transparent;
+			text-align: center;
+
+			li {
+				a {
+					color: tint($secondary-color,80%);
+				}
+
+				&.active {
+					color: $primary-color;
+				}
+			}
+		}
+	}
+}
+
+main {
+	padding: 60px 0;
+	.post {
+		margin: 60px 0;
+
+		&:first-child {
+			margin-top: 0px;
+		}
+
+		&:last-child {
+			margin-bottom: 0px;
+		}
+
+		.post-meta {
+			@include MQ(M) {
+				float: right;
+				text-align: right;
+			}
+			
+			div {
+				margin-bottom: 5px;
+				@include MaxQ(S) {
+					display: inline-block;
+					margin-right: 10px;
+					&:last-child {
+						margin-right: 0px;
+					}
+				}
+			}
+			.date {
+				.date-number {
+					display: inline-block;
+					font-size: 10rem;
+					color: $light-black;
+					font-weight: 700;
+					letter-spacing: -7px;
+					line-height: 72px;
+					
+					@include MQ(M) {
+						display: block;
+						margin-bottom: 5px;
+						margin-right: -8px;
+					}
+				}
+				.date-text {
+
+					font-size: 2.4rem;
+					font-weight: 700;
+					color: $primary-color;
+				}
+			}
+
+			.post-author {
+				a,a:hover {
+					color: $light-black;
+				}
+			}
+
+			.categories {
+				a {
+					color: $primary-color;
+				}
+			}
+
+			.comments-number {
+				color: $light-black;
+			}
+		}
+
+		.post-title {
+			font-size: 3.6rem;
+			line-height: 40px;
+			font-weight: 700;
+			color: $light-black;
+			letter-spacing: -1px;
+			margin-bottom: 40px;
+			@include MaxQ(S) {
+				margin-top: 15px;
+			}
+
+			@include MQ(M) {
+				line-height: 30px;
+			}
+		}
+
+		.post-content {
+			img {
+				max-width: 100%;
+			}
+			margin-bottom: 40px;
+		}
+
+		.excerpt {
+			p {
+				font-size: 1.4rem;
+				line-height: 24px;
+				color: $light-black;
+				margin-bottom: 30px;
+			}
+		}
+
+		.read-more {
+			display: block;
+			background: $primary-color;
+			width: 156px;
+			height: 40px;
+			text-align: center;
+			color: white;
+			line-height: 40px;
+			@include border-radius(20px); 
+			@include transition(background .4s);
+
+			&:hover {
+				background: $secondary-color;
+			}
+		}
+	}
+
+
+	.comment-section {
+		margin-top: 60px;
+		.comment-section-title {
+			font-weight: 300;
+			letter-spacing: -1px;
+			span {
+				color: $primary-color;
+			}
+		}
+
+		.comment-list {
+			padding-left: 30px;
+			margin-bottom: 60px;
+			.comment {
+				position: relative;
+				border: 2px solid rgba(33,39,42,0.05);
+				margin: 30px 0; 
+				padding: 30px 30px 30px 40px;
+				@include border-radius(4px);
+
+				&.depth-2 {
+					width: 90%;
+					margin-left: 10%;
+				}
+
+				.avatar {
+					position: absolute;
+					top: 10px;
+					left: -30px;
+					width: 60px;
+					height: 60px;
+					@include border-radius(50%);
+					overflow: hidden;
+					border: 2px solid rgba(33,39,42,0.05);
+					background: white;
+
+					img {
+						position: absolute;
+						@include center;
+					}
+				}
+
+				.reply-link {
+					position: absolute;
+					right: 20px;
+					top: 20px;
+					color: tint(black,80%);
+					font-size: 2.4rem;
+				}
+
+				.author {
+					font-size: 1.4rem;
+					font-weight: 700;
+					font-style: italic;
+					text-transform: uppercase;
+				}
+
+				.date {
+					font-size: 1.2rem;
+					font-weight: 700;
+					font-style: italic;
+					color: tint(black,60%);
+				}
+
+				.comment-body {
+					padding-left: 20px;
+					margin-top: 15px;
+				}
+			}
+		}
+
+		.comment-form {
+			margin-top: 50px;
+			.reply-text {
+				font-weight: 300;
+				margin-bottom: 30px;
+			}
+		
+			input,
+			textarea {
+				width: 100%;
+				border: 0px;
+				padding: 0 30px 5px 0;
+				color: tint(gray, 20%);
+				font-size: 1.4rem;
+				font-weight: 300;
+				border-bottom: 1px solid tint(black, 70%);
+
+				@include placeholder {
+					font-size: 1.4rem;
+					color: tint(black, 70%);
+					line-height: 21px;
+					font-weight: 300;
+					letter-spacing: 0.5px;
+					@include transition(all .4s);
+				}
+
+				&:focus {
+					@include placeholder {
+						color: transparent;
+					}
+				}
+			}
+
+			textarea {
+				height: 120px; 
+				margin-top: 30px;
+			}
+
+			.submit-btn {
+				display: block;
+				margin: 0px auto;
+				@include MQ(S) {
+					float: right;
+				}
+			}
+		}
+	}	
+
+
+	.pager {
+		li {
+			&:first-child {
+				float: left;
+			}
+
+			&:last-child {
+				float: right;
+			}
+
+			a {
+				@include transition(all .4s);
+				padding: 5px 18px;
+				&:hover {
+					background: $secondary-color;
+					color: white;
+				}
+			}
+		}
+
+		&:before,
+		&:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+	}
+
+
+	aside {
+		margin-top: 60px;
+		@include MQ(M) {
+			margin-top: 0px;
+		}
+		.widget {
+			margin: 40px 0;
+			&:first-child {
+				margin-top: 0px;
+			}
+			.widget-title {
+				font-size: 1.6rem;
+				color: $light-black;
+				text-transform: uppercase;
+				letter-spacing: -1px;
+				font-weight: 700;
+				margin-bottom: 20px;
+			}
+			&.widget_search {
+				border-bottom: 0px;
+				
+				.search-input {
+					position: relative;
+					border: 0px;
+					border-bottom: 1px solid rgba(51,51,51,.1);
+					
+					input {
+						width: 100%;
+						border: 0px;
+						padding: 0 30px 5px 0;
+						color: tint(gray, 20%);
+						font-size: 1.4rem;
+						font-weight: 300;
+
+						@include placeholder {
+							font-size: 1.2rem;
+							color: tint(gray, 50%);
+							line-height: 21px;
+							letter-spacing: 0.5px;
+							@include transition(all .4s);
+						}
+
+						&:focus {
+							@include placeholder {
+								color: transparent;
+							}
+						}
+					}
+				}
+
+				.search-button {
+					position: absolute;
+					border: 0px;
+					top: 0px;
+					right: 0px;
+					background: transparent;
+					color: $light-black;
+				}
+			}
+			&.widget_categories,
+			&.widget_archive {
+				ul {
+					li {
+						margin-bottom: 10px;
+						&:last-child {
+							margin-bottom: 0px;
+						}
+						a {
+							color: $light-black;
+							font-size: 1.6rem;
+							em {
+								color: $primary-color;
+							}
+						}
+					}
+				}
+			}
+
+			&.widget_popular_posts {
+				#owl-popular {
+					figure {
+						position: relative;
+						height: 250px;
+						overflow: hidden;
+						@include MQ(M) {
+							height: 180px;
+						}
+
+						img {
+							position: absolute;
+							@include center;
+						}
+
+						figcaption {
+							position: absolute;
+							@include center;
+							width: 80%;
+							height: 70%;
+							background: rgba(0,0,0,.5);
+							color: white;
+
+							p {
+								width: 100%;
+								padding: 20px;
+								position: absolute;
+								@include center;
+								font-size: 1.4rem;
+								font-weight: 300;
+								text-align: center;
+							}
+						}
+					}
+
+					.owl-controls {
+						.owl-dots {
+							position: absolute;
+							bottom: -30px;
+							@include center(x);
+							.owl-dot {
+								display: inline-block;
+								margin-left: 5px;
+								&:first-child {
+									margin-left: 0px;
+								}
+								span {
+									display:block;
+									width: 10px;
+									height: 10px;
+									background: $secondary-color;
+									@include border-radius(50%);
+								}
+
+								&.active {
+									span {
+										background: $primary-color;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			&.widget_tag_cloud {
+				a {
+					display: inline-block;
+					padding: 5px 14px;
+					text-align: center;
+					margin: 0 2px 5px 0;
+					font-size: 1.2rem;
+					border: 1px solid $primary-color;
+					color: $light-black;
+					@include border-radius(20px);
+					@include transition(background .4s, color .4s);
+					&:hover {
+						background: $primary-color;
+						color: white;
+					}
+
+					&:last-child {
+						margin-right: 0px;
+					}
+				}
+			}
+
+			&.widget_social_media {
+				ul {
+					li {
+						display: inline-block;
+						margin-left: 7px;
+						a {
+							color: $primary-color;
+							font-size: 2rem;
+							@include transition(color .4s);
+							&:hover {
+								color: $secondary-color;
+							}
+						}
+						&:first-child {
+							margin-left: 0px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

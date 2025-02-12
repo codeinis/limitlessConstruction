@@ -1,0 +1,434 @@
+/* -------------------------------- 
+	Animations
+-------------------------------- */
+
+
+.animated {
+	@include animation-duration(2s);
+	@include animation-fill-mode(both);
+}
+
+
+//fade in right
+@include keyframes(fadeInRight) {
+	from {
+	    opacity: 0;
+	    @include transform(translate3d(-30%,0,0));
+	}
+
+	to {
+	    opacity: 1;
+	    @include transform(translate3d(0,0,0));
+	}
+}
+
+.fadeInRight {
+	@include animation-name(fadeInRight);
+}
+
+
+
+//fade in top
+@include keyframes(fadeInTop) {
+	from {
+	    opacity: 0;
+	    @include transform(translate3d(0,30%,0));
+	}
+
+	to {
+	    opacity: 1;
+	    @include transform(translate3d(0,0,0));
+	}
+}
+
+
+.fadeInTop {
+	@include animation-name(fadeInTop);
+}
+
+
+
+/* -------------------------------- 
+	Section Title
+-------------------------------- */
+
+.section-title {
+	text-align: center;
+
+	.vertical-line {
+		position: relative;
+		display: block;
+		width: 1px;
+		height: 50px;
+		background: $secondary-color;
+		opacity: .2 !important;
+		margin: 0px auto;
+
+		&.bottom {
+			&:after {
+				position: absolute;
+				top: 50px;
+				@include center(x);
+				content: '';
+				display: block;
+				width: 20px;
+				height: 1px;
+				background: $secondary-color;
+				opacity: .4 !important;
+			}
+		}
+	}
+
+	h3 {
+		font-size: 1.4rem;
+		font-weight: 700;
+		letter-spacing: -0.5px;
+		color: $secondary-color;
+		text-transform: uppercase;
+		margin-bottom: 20px;
+		line-height: 20px;
+		
+		&:before {
+			display: block;
+			font-family: 'FontAwesome';
+			content: '\f107';
+			font-size: 2.6rem;
+			color: $secondary-color;
+			opacity: .2;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+
+
+/* -------------------------------- 
+	Modal Fullscreen
+-------------------------------- */
+
+.modal-fullscreen {
+	background: $secondary-color;
+
+	.modal-dialog {
+		margin: 0px auto;
+		width: 100%;
+
+		@include MQ(S) {
+			width: 750px;
+		}
+		@include MQ(M) {
+			 width: 970px;
+		}
+
+		@include MQ(L) {
+			width: 1170px;
+		}
+
+		.modal-content {
+			background: transparent;
+			border: 0;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			padding: 60px 0 80px 0;
+
+
+			.modal-header {
+				border-bottom: 0px;
+				padding: 0 15px 15px 15px;
+				@include MQ(L) {
+					padding: 0 0 15px 0;
+				}
+				.modal-logo {
+					width: 100px;
+					display: block;
+					margin: 30px auto;
+				}
+
+				.modal-title {
+					color: white;
+					font-size: 2.8rem;
+					font-weight: 300;
+					letter-spacing: -0.5px;
+				}
+
+				hr {
+					float: left;
+					width: 80px;
+					height: 5px;
+					margin: 10px 0;
+					border-top: 0px;
+					background: $primary-color;
+					@include border-radius(5px);
+				}
+			}
+
+			.modal-body {
+				padding: 0 15px;
+				@include MQ(L) {
+					padding: 0px;
+				}
+			}
+
+			.modal-footer {
+				margin-top: 30px;
+				padding: 30px 15px;
+				@include MaxQ(S) {
+					padding: 30px;
+				}
+				@include MQ(L) {
+					padding: 30px 0px 0px 0px;
+				}
+				.btn-prev,
+				.btn-next {
+
+					width: 200px;
+					height: 50px;
+					line-height: 40px;
+					text-align: center;
+					color: white;
+					font-size: 1.6rem;
+					font-weight: 700;
+					border: 2px solid white;
+					@include border-radius(25px);
+					background: transparent;
+					vertical-align: middle;
+					outline: none;
+
+					@include MaxQ(XS) {
+						position: relative;
+						display: block;
+						left: 50%;
+						margin-left: -100px;
+						margin-bottom: 15px;
+					}
+				}
+
+				.btn-prev {
+					float: left;
+				}
+			}
+		}
+
+
+		&.service-modal {
+			.modal-content {
+				.modal-body {
+					figure {
+						position: relative;
+						float: left;
+						width: 400px;
+						height: 225px;
+						margin: 0 15px 5px 0;
+						border: 5px solid white;
+						overflow: hidden;
+
+						@include MaxQ(XS) {
+							width: 100%;
+							margin: 0 15px 25px 0;
+						}
+
+						img {
+							position: absolute;
+							@include center;
+						}
+					}
+
+					.text-content {
+						p {
+
+							font-size: 1.4rem;
+							color: white;
+							line-height: 24px;
+							margin-bottom: 10px;
+						}
+					}
+				}
+			}
+		}
+
+
+		&.project-modal {
+			.modal-content {
+				.modal-header {
+					.location {
+						text-align: right;
+						font-size: 1.8rem;
+						color: $primary-color;
+					}
+				}
+				.modal-body {
+
+					.col-md-8 {
+						@include MaxQ(S) {
+							margin-bottom: 30px;
+						}
+					}
+
+					.carousel {
+						.carousel-inner {
+							overflow: hidden;
+							border: 3px solid white;
+							@include MQ(M) {
+								height: 500px;
+							}
+						}
+
+						.carousel-control {
+							text-shadow: none;
+
+							&.right,
+							&.left {
+								width: 5%;
+								position: absolute;
+								background-image: none;
+								background: rgba(255,255,255,.2);
+								@include center(y);
+								font-size: 2.8rem;
+								@include transition(background .4s);
+
+								&:hover {
+									background: rgba(255,255,255,.4);
+								}
+							}	
+						}
+					}
+
+					.project-features {
+						ul {
+							li {
+								margin-bottom: 25px;
+								&:last-child {
+									margin-bottom: 0px;
+								}
+
+								h2 {
+									font-size: 1.8rem;
+									i {
+										margin-right: 5px;
+									}
+									padding-bottom: 10px;
+									margin-bottom: 10px;
+									border-bottom : 1px solid rgba(255,255,255,0.1);
+									color: $primary-color;
+								}
+
+								p {
+									font-size: 1.4rem;
+									color: white;
+									font-weight: 300;
+								}
+							}
+						}
+					}
+				}
+
+				.modal-footer {
+					border-top: 0px;
+				}
+			}
+		}
+	}
+
+	.close {
+		float: none;
+		position: absolute;
+		top: 30px;
+		right: 30px;
+		color: white;
+		opacity: 1;
+		z-index: 100;
+	}
+}
+
+.modal-backdrop {
+	&.modal-backdrop-fullscreen  {
+		background: $secondary-color;
+		&.in {
+			opacity: .97;
+  			filter: alpha(opacity=97);
+		}
+	}
+}
+
+
+/* -------------------------------- 
+	Other Classes
+-------------------------------- */
+.hidden{
+	visibility:hidden;
+	width:0px!important;
+	height:0px!important;
+	margin:0px!important;
+	padding:0px!important;
+}
+
+.normal-btn {
+	display: block;
+	width: 156px;
+	height: 40px;
+	color: white;
+	font-size: 1.4rem;
+	text-transform: uppercase;
+	font-weight: 300;
+	background: $primary-color;
+	text-align: center;
+	line-height: 40px;
+	@include border-radius(20px);
+	@include transition(all .4s);
+	outline: none;
+	
+	&:hover {
+		background: $secondary-color;
+		color: white;
+	}
+}
+
+.submit-btn {
+	@extend .normal-btn;
+	line-height: 30px;
+	margin-top: 15px;
+	border: 0px;
+	&:hover {
+		background: tint($secondary-color,30%);
+	}
+}
+
+.back-to-top {
+	position: fixed;
+	display: block;
+	width: 60px;
+	height: 60px;
+	background: tint($primary-color,20%);
+	bottom: 45px;
+	right: 30px;
+	opacity: 0;
+	z-index: 100;
+	visibility: hidden;
+	@include dropshadow (1px,1px,5px,0,.3);
+	@include border-radius(4px);
+	@include transition(opacity .5s, visibility .5s);
+	
+	i {
+		position: absolute;
+		@include center;
+		font-size: 2.4rem;
+		color: white;
+
+		@include MaxQ(XS) {
+			font-size: 2rem;
+		}
+	}
+
+	&.is-visible {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&.fade-out { 
+		opacity: .8;
+	}
+
+	&:hover {
+		opacity: 1;
+	}
+}

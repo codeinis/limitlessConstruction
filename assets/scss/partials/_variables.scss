@@ -1,0 +1,27 @@
+// FONTS
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700|Raleway:100,200,300,400,500,600,700,800,900|Ubuntu:300,400,500,700&subset=latin-ext');
+$primary-font: 'Ubuntu', sans-serif;     // primary color
+$secondary-font: 'Raleway', sans-serif;  // secondary color
+$oswald: 'Oswald', sans-serif;           // only for clipping mask
+
+// COLORS
+
+$primary-color: #ffb400;  		// primary color
+$secondary-color: #1f2528; 		// secondary color
+$bgcolor: white; 				// primary bg color
+$linkcolor: #1f2528; 			// primary link color
+
+$text-color: #000000;  			// Default text color
+$darkgraytext-color: #7b7b7b;	// Dark Gray text color
+
+$seperator-color: #cccccc;		// Arrow seperator color
+$frame-border-color: #e9eaec; 	// Photo frame stroke color
+$member-stroke: #cfcfcf;		// Member circle stroke color
+
+$member-circle-outer: #e5e5e5;  // Member outer circle color
+$member-circle-inner: #f2f2f2;  // Member inner circle color
+
+$home-blog-posts-bg:  #f2f2f2; 	// Home blog posts bg color
+
+$light-black: #333333;     		//Light black
+$widget-border-color : #eeeeee; //Widget border bottom color
