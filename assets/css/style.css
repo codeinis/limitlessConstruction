@@ -3427,7 +3427,6 @@ main {
           .lang-trigger-sidebar {
             position: absolute;
             display: block;
-            /* top: 40px; */
             left: 30px;
             font-family: "Raleway", sans-serif;
             text-transform: uppercase;
