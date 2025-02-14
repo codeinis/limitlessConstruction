@@ -44,11 +44,24 @@
 			        Menu <span></span>
 			    </a>
 
-			    <button class="lang-trigger hide-on-mobile">
+			    <!-- <button class="lang-trigger hide-on-mobile">
 					<a href="https://calendly.com/ahmed-limitlessconstruction/30min?month=2025-02" style="color: white;" target="_blank">
-						Book Free Consultation
+						Book A Free Consultation
 					</a>
-			    </button>
+			    </button> -->
+				<button class="lang-trigger hide-on-mobile" id="openModal">
+					Book A Free Consultation
+				</button>
+			
+				<!-- Modal -->
+				<div id="modal" class="modal iframe-container">
+					<div class="modal-content">
+						<span class="close-btn" id="closeModal">&times;</span>
+						<iframe id="iframe" src="" allowfullscreen></iframe>
+					</div>
+				</div>
+			
+			
 				<a href="index.html" class="logo show-on-mobile" style="top:0; left:50px">
 					<img src="assets/images/logo/logo 2.png" alt="Limitless Construction logo" style="width: auto; height:6rem;">
 				  </a>
@@ -77,11 +90,12 @@
 							<!-- <li><a href="#references">References</a></li> -->
 							<!-- <li><a href="#blog">Blog</a></li> -->
 							<li><a href="#contact">Contact Us</a></li>
-							<li>
-								<a href="https://calendly.com/ahmed-limitlessconstruction/30min?month=2025-02" class="lang-trigger-sidebar" target="_blank">
-									Book Free Consultation
+							<!-- <li>
+								<a href="#" class="lang-trigger-sidebar" id="openModal">
+									Book A Free Consultation
 								</a>
-							</li>
+							</li> -->
+							
 							
 				        </ul>
 			        </div><!-- /.nav-container-top-->
@@ -93,6 +107,17 @@
 			        	</ul>/.company-profile -->
 			        <!-- </div>/.nav-container-bottom -->
 			    </nav><!-- /.nav-container-->
+				<script>
+					document.getElementById('openModal').addEventListener('click', function() {
+						document.getElementById('iframe').src = "https://calendly.com/ahmed-limitlessconstruction/30min?month=2025-02";
+						document.getElementById('modal').style.display = "flex";
+					});
+			
+					document.getElementById('closeModal').addEventListener('click', function() {
+						document.getElementById('modal').style.display = "none";
+						document.getElementById('iframe').src = "";
+					});
+				</script>
 				<a href="index.html" class="logo hide-on-mobile">
 					<img src="assets/images/logo/logo 2.png" alt="Limitless Construction logo" style="width: auto; height:16rem;">
 				  </a>
@@ -153,6 +178,7 @@
 									</div>
 									<div class="buttons spy-buttons">
 										<a href="#contact" class="caption-button dark"><span>Our Address</span></a>
+										
 										<a href="#contact" class="caption-button white"><span>Contact Us</span></a>
 									</div>
 								</div>
